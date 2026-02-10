@@ -1,33 +1,40 @@
-import { Heading } from './components/heading/Heading'
-
 import './styles/theme.css';
 import './styles/global.css';
-import { TimerIcon } from 'lucide-react';
-import { Logo } from './components/logo/Logo';
+import { Logo } from './components/Logo';
+import { Container } from './components/Container';
+import { Menu } from './components/Menu';
+import { CountDown } from './components/CountDown';
+import { DefaultInput } from './components/DefaultInput';
 
 export function App() {
   return (
     <>
-      <div className='container-fluid'>
-        <div className='content'>
-          <p>Logo</p>
-        </div>
-      </div>
-      <div className='container-fluid'>
-        <div className='content'>
-          <p>Menu</p>
-        </div>
-      </div>
-      <div className='container-fluid'>
-        <div className='content'>
-          <p>Form</p>
-        </div>
-      </div>
-      <div className='container-fluid'>
-        <div className='content'>
-          <p>Form</p>
-        </div>
-      </div>
+      <Container>
+        <Logo />
+      </Container>
+      <Container>
+        <Menu />
+      </Container>
+      <Container>
+        <CountDown />
+      </Container>
+      <Container>
+        <form className='form' action=''>
+          <div className='formRow'>
+            <DefaultInput type='text' />
+          </div>
+          <div className='formRow'>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </div>
+          <div className='formRow'>
+            <p>Ciclos</p>
+            <p>0 0 0 0</p>
+          </div>
+          <div className='formRow'>
+            <button>Enviar</button>
+          </div>
+        </form>
+      </Container>
     </>
   );
 }
