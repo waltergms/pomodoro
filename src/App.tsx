@@ -1,24 +1,14 @@
-import { Home } from './pages/Home';
-
 import './styles/theme.css';
 import './styles/global.css';
 import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider';
 import { MessagesContainer } from './components/MessageContainer';
-import { BrowserRouter, Routes, Route } from 'react-router';
-import { NotFound } from './pages/NotFound';
-import { AboutPomodoro } from './pages/AboutPomodoro';
+import { MainRouter } from './routers/Main';
 
 export function App() {
   return (
     <TaskContextProvider>
       <MessagesContainer>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<AboutPomodoro />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <MainRouter />
       </MessagesContainer>
     </TaskContextProvider>
   );
