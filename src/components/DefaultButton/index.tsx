@@ -2,7 +2,7 @@ import styles from './styles.module.css';
 
 type DefaultButtonProps = {
   icon: React.ReactNode;
-  color: 'green' | 'red';
+  color?: 'green' | 'red';
 } & React.ComponentProps<'button'>;
 
 export function DefaultButton({
@@ -13,7 +13,7 @@ export function DefaultButton({
   return (
     <>
       <button className={`${styles.button} ${styles[color]}`} {...props}>
-        {icon}{' '}
+        {icon}
       </button>
     </>
   );

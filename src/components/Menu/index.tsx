@@ -12,9 +12,9 @@ type AvailableThemes = 'dark' | 'light';
 
 export function Menu() {
   const [theme, setTheme] = useState<AvailableThemes>(() => {
-    const storagedTheme =
+    const storageTheme =
       (localStorage.getItem('theme') as AvailableThemes) || 'dark';
-    return storagedTheme;
+    return storageTheme;
   });
 
   const nextThemeIcon = {
@@ -35,49 +35,47 @@ export function Menu() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    // return () => {
-    //   console.log('Limpa a sujeira');
-    // };
     localStorage.setItem('theme', theme);
   }, [theme]);
 
   return (
-    <>
-      <nav className={styles.menu}>
-        <a
-          href='#'
-          className={styles.menuLink}
-          aria-label='Ir para home'
-          title='Ir para home'
-        >
-          <HouseIcon />
-        </a>
-        <a
-          href='#'
-          className={styles.menuLink}
-          aria-label='Ver histórico'
-          title='Ver histórico'
-        >
-          <HistoryIcon />
-        </a>
-        <a
-          href='#'
-          className={styles.menuLink}
-          aria-label='Ir para configurações'
-          title='Ir para configurações'
-        >
-          <SettingsIcon />
-        </a>
-        <a
-          href='#'
-          className={styles.menuLink}
-          aria-label='Mudar tema'
-          title='Mudar tema'
-          onClick={handleThemeChange}
-        >
-          {nextThemeIcon[theme]}
-        </a>
-      </nav>
-    </>
+    <nav className={styles.menu}>
+      <a
+        className={styles.menuLink}
+        href='#'
+        aria-label='Ir para a Home'
+        title='Ir para a Home'
+      >
+        <HouseIcon />
+      </a>
+
+      <a
+        className={styles.menuLink}
+        href='#'
+        aria-label='Ver Histórico'
+        title='Ver Histórico'
+      >
+        <HistoryIcon />
+      </a>
+
+      <a
+        className={styles.menuLink}
+        href='#'
+        aria-label='Configurações'
+        title='Configurações'
+      >
+        <SettingsIcon />
+      </a>
+
+      <a
+        className={styles.menuLink}
+        href='#'
+        aria-label='Mudar Tema'
+        title='Mudar Tema'
+        onClick={handleThemeChange}
+      >
+        {nextThemeIcon[theme]}
+      </a>
+    </nav>
   );
 }

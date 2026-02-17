@@ -1,9 +1,8 @@
-.container {
-  max-width: 98rem;
-  margin: 0 auto;
+.container-fluid {
+  max-width: auto;
 }
 
-.container-fluid {
+.container {
   max-width: 98rem;
   margin: 0 auto;
 }
