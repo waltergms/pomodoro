@@ -29,7 +29,7 @@ export function MainForm() {
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      showMessage('warning', 'Digite uma tarefa.');
+      showMessage.warn('Digite uma tarefa.');
       return;
     }
 
@@ -42,13 +42,13 @@ export function MainForm() {
       duration: state.config[nextCyleType],
       type: nextCyleType,
     };
-    showMessage('success', 'Tarefa iniciada.');
+    showMessage.success('Tarefa iniciada.');
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
   function handleInterruptTask() {
     showMessage.dismiss();
-    showMessage('info', 'Tarefa interrompida.');
+    showMessage.info('Tarefa interrompida.');
 
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }

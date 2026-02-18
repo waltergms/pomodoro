@@ -21,7 +21,6 @@ export function MessagesContainer({ children }: MessagesContainerProps) {
         theme='light'
         transition={Bounce}
       />
-      ;
     </>
   );
 }

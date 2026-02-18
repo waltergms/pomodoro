@@ -2,7 +2,7 @@ import './styles/theme.css';
 import './styles/global.css';
 import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider';
 import { MessagesContainer } from './components/MessageContainer';
-import { MainRouter } from './routers/Main';
+import { MainRouter } from './routers/MainRouter';
 
 export function App() {
   return (
