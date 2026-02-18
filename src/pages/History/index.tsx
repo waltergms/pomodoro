@@ -8,36 +8,27 @@ import styles from './styles.module.css';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
-import { sortTasks, SortTasksOptions } from '../../utils/sortTasks';
+import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
 import { useEffect, useState } from 'react';
 import { showMessage } from '../../adapters/showMessage';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
-  const [confirmClearHistory, setConfirmClearHistory] = useState(false);
   const hasTasks = state.tasks.length > 0;
 
-  const [sortTasksOptions, setSortTaskOptions] = useState<SortTasksOptions>(
-    () => {
-      return {
-        tasks: sortTasks({ tasks: state.tasks }),
-        field: 'startDate',
-        direction: 'desc',
-      };
-    },
-  );
+  const [sortConfig, setSortConfig] = useState<
+    Pick<SortTasksOptions, 'field' | 'direction'>
+  >({
+    field: 'startDate',
+    direction: 'desc',
+  });
 
-  useEffect(() => {
-    setSortTaskOptions(prevState => ({
-      ...prevState,
-      tasks: sortTasks({
-        tasks: state.tasks,
-        direction: prevState.direction,
-        field: prevState.field,
-      }),
-    }));
-  }, [state.tasks]);
+  const sortedTasks = sortTasks({
+    tasks: state.tasks,
+    field: sortConfig.field,
+    direction: sortConfig.direction,
+  });
 
   useEffect(() => {
     return () => {
@@ -45,32 +36,21 @@ export function History() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!confirmClearHistory) return;
-
-    setConfirmClearHistory(false);
-
-    dispatch({ type: TaskActionTypes.RESET_STATE });
-  }, [confirmClearHistory, dispatch]);
-
   function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
-    const newDirection = sortTasksOptions.direction === 'desc' ? 'asc' : 'desc';
+    const newDirection = sortConfig.direction === 'desc' ? 'asc' : 'desc';
 
-    setSortTaskOptions({
-      tasks: sortTasks({
-        direction: newDirection,
-        tasks: sortTasksOptions.tasks,
-        field,
-      }),
-      direction: newDirection,
+    setSortConfig({
       field,
+      direction: newDirection,
     });
   }
 
   function handleResetHistory() {
     showMessage.dismiss();
     showMessage.confirm('Tem certeza?', confirmation => {
-      setConfirmClearHistory(confirmation);
+      if (confirmation) {
+        dispatch({ type: TaskActionTypes.RESET_STATE });
+      }
     });
   }
 
@@ -123,7 +103,7 @@ export function History() {
               </thead>
 
               <tbody>
-                {sortTasksOptions.tasks.map(task => {
+                {sortedTasks.map(task => {
                   const taskTypeDictionary = {
                     workTime: 'Foco',
                     shortBreakTime: 'Descanso curto',
