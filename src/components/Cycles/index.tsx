@@ -1,3 +1,4 @@
+import type { TaskType } from '../../models/TaskType';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
@@ -8,9 +9,9 @@ export function Cycles() {
 
   const cycleStep = Array.from({ length: state.currentCycle });
 
-  const cycleDescriptionMap = {
+  const cycleDescriptionMap: Record<TaskType, string> = {
     workTime: 'foco',
-    shortBreakTime: 'decanso curto',
+    shortBreakTime: 'descanço curto',
     longBreakTime: 'descanso longo',
   };
 

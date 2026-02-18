@@ -1,3 +1,4 @@
+import type { TaskType } from './TaskType';
 import type { TaskModel } from './TaskModel';
 
 export type TaskStateModel = {
@@ -7,8 +8,6 @@ export type TaskStateModel = {
   activeTask: TaskModel | null;
   currentCycle: number; // 1 a 8
   config: {
-    workTime: number;
-    shortBreakTime: number;
-    longBreakTime: number;
+    [key in TaskType]: number;
   };
 };

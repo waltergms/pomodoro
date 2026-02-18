@@ -12,6 +12,7 @@ import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
 import { useEffect, useState } from 'react';
 import { showMessage } from '../../adapters/showMessage';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
+import type { TaskType } from '../../models/TaskType';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -104,7 +105,7 @@ export function History() {
 
               <tbody>
                 {sortedTasks.map(task => {
-                  const taskTypeDictionary = {
+                  const taskTypeDictionary: Record<TaskType, string> = {
                     workTime: 'Foco',
                     shortBreakTime: 'Descanso curto',
                     longBreakTime: 'Descanso longo',
