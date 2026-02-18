@@ -12,7 +12,7 @@
 //
 // O spread [...tasks] cria uma cópia do array original para não alterar ele direto.
 
-import type { TaskModel } from '../models/TaskModel';
+import type { TaskModel } from '../models/TaskModel.ts';
 
 // Define os parâmetros esperados pela função
 export type SortTasksOptions = {

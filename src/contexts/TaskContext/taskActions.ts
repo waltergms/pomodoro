@@ -11,7 +11,7 @@
 // action <- a ação disparada, geralmente é um objeto com type e (opcionalmente) payload
 // type <- o tipo da ação, geralmente uma string (pode ser enum, constante, etc)
 // payload <- os dados extras enviados junto com a action, se necessário para atualizar o estado
-import type { TaskModel } from '../../models/TaskModel';
+import type { TaskModel } from '../../models/TaskModel.ts';
 import type { TaskStateModel } from '../../models/TaskStateModel';
 
 export const TaskActionTypes = {

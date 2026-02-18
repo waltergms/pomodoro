@@ -1,4 +1,4 @@
-import type { TaskModel } from '../models/TaskModel';
+import type { TaskModel } from '../models/TaskModel.ts';
 
 export function getTaskType(task: TaskModel): string {
   if (task.type === 'workTime') return 'Trabalho';

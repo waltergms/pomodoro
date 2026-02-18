@@ -1,4 +1,4 @@
-import type { TaskModel } from '../models/TaskModel';
+import type { TaskModel } from '../models/TaskModel.ts';
 
 export function getTaskStatus(
   task: TaskModel,
